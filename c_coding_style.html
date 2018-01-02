@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>C Coding Style</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/prism.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
+		<script type="text/javascript" src="https://dl.etna-alternance.net/sujets/prism.js"></script>
+	</head>
+	<body>
+		<div class="panel panel-module">
+			<div class="panel-heading">ETNA Documentation</div>
+		</div>
+		<div class="panel panel-project">
+			<div class="panel-heading">C Coding Style</div>
+			<div class="panel-body">
+				<p>The <i>Coding Style ETNA</i> is a set of rules, guidelines and programming conventions that has been created within the school, and that you have to respect.</p>
+				<p>It concerns:</p>
+				<ul>
+					<li>The organization of the delivery folder.</li>
+					<li>The denomination of the identifiers.</li>
+					<li>The overall presentation (paragraphs).</li>
+					<li>The local presentation (lines).</li>
+					<li>Source files and headers.</li>
+					<li>Makefiles.</li>
+				</ul>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>The <i>Coding Style</i> is a purely syntactic convention, so it can not be used as an excuse if your program does not work!</li>
+						</ul>
+					</div>
+				</div>
+				<p>It is compulsory on all programs written in C as part of ETNA projects, regardless of the year or unit. It applies to all source files (<code>.c</code>) and headers (<code>.h</code>), as well as Makefiles.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Although the <i>Coding Style</i> is not required in all projects, this is not a reason for not always sequencing and structuring your code!</li>
+							<li>Most of the rules in this <i>Coding Style</i> apply to all languages, so it can be useful when you’re doing projects in different languages.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>It’s easier and quicker to follow the guide style from the beginning of a project rather than to adapt an existing code at the end.</li>
+						</ul>
+					</div>
+				</div>
+				<p>The existence of this <i>Coding Style</i> is justified by the need to standardize the writing of programs within the school, in order to facilitate group work.</p>
+				<p>It is also an excellent way to encourage structuring and clarity of the code and thus facilitate:</p>
+				<ul>
+					<li>Its reading.</li>
+					<li>Its debugging.</li>
+					<li>Its maintenance.</li>
+					<li>Its internal logic.</li>
+					<li>Its reuse.</li>
+					<li>Writing tests.</li>
+					<li>Adding new features.</li>
+					<li>...</li>
+				</ul>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>When you are facing a choice and you do not know what decision to make, always ask yourself which one helps to make your code clearer, ergonomic and flexible.</li>
+						</ul>
+					</div>
+				</div>
+				<p>However, if you provide a <b>complete, relevant, accurate justification with a long-term view</b> (cleanliness, legibility, code flexibility, optimization, etc.), you can infringe some of the <i>Coding Style</i> points.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>The relevance of this justification is left to the discretion of the proofreader, so it is preferable to present a strong argumentation or to abstain.</li>
+						</ul>
+					</div>
+				</div>
+				<p>In case of uncertainty or ambiguity in the principles specified in this document refer to your local education manager.</p>
+				<p>There are 3 levels of severity: <b>major</b> <span class="cs-major"></span>, <b>minor</b> <span class="cs-minor"></span> and <b>info</b> <span class="cs-info"></span>.</p>
+				<p>There are many and many ways to produce unclean code. Even though one cannot mention all of them in this document, they have to be respected. We call them <b>implicite rules</b> when not explicitly defined in this document.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Implicit rules are considered as infos <span class="cs-info"></span>.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>This document is inspired by the <a href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html">Linux Kernel Coding Style</a>, and is freely adapted from Robert C. Martin’s excellent book <i>Clean Code</i>.</li>
+							<li>Some tools (such as <a href="http://editorconfig.org/">Editor Config</a>) might simplify the task.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- O - Files organization -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">O - Files organization</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O1 - Contents of the delivery folder</div>
+			<div class="panel-body">
+				<p class="cs-major">Your delivery folder should contain only <b>files required for compilation</b>.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>This means no compiled (<code>.o</code>, <code>.gch</code>, <code>.a</code>, <code>.so</code>, ...), temporary or unnecessary files (<code>*~</code>, <code>*#</code>, <code>*.d</code>, <code>toto</code>, ...).</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O2 - File extension</div>
+			<div class="panel-body">
+				<p class="cs-minor">Sources in a C program should only have extensions <code>.c</code> <b>or</b> <code>.h</code>.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O3 - File coherence</div>
+			<div class="panel-body">
+				<p class="cs-major">A source file should match <b>a logical entity</b>, and group all the functions associated with that entity.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Beyond 5 functions in your file, you should probably subdivide your logical entity into several sub-entities.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O4 - Naming files and folders</div>
+			<div class="panel-body">
+				<p class="cs-major">The name of the file should define the logical entity it represents, and thus be <b>clear, precise, explicit and unambiguous</b>.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>For example, the <code>string.c</code> or <code>algo.c</code> files are probably incorrectly named. Names like <code>string_toolbox.c</code> or <code>pathfinding.c</code> would be more appropriate.</li>
+						</ul>
+					</div>
+				</div>
+				<p>All identifier names should be <b>in English</b>, according to the <code>snake_case</code> <b>convention</b> (meaning it is composed only of lowercase, numbers, and underscores).</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Abbreviations are tolerated to the extent that they can significantly reduce the size of the name without losing the meaning.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- G - Global scope -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">G - Global scope</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G1 - File header</div>
+			<div class="panel-body">
+				<p class="cs-major">The source files (<code>.c</code>, <code>.h</code>, <code>Makefile</code>, ...) should always start with the <b>standard header</b> of the school. This header is created in Emacs using the <code>C-c C-h</code> command.</p>
+				<pre><code class="language-c">/*
+** ETNA PROJECT, $YEAR
+** $NAME_OF_THE_PROJECT
+** File description:
+** 		No file there, just an etna header example
+*/</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G2 - Separation of functions</div>
+			<div class="panel-body">
+				<p class="cs-minor">Inside a source file, <b>one and only one empty line</b> should separate the implementations of functions.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G3 - Indentation of pre-processor directives</div>
+			<div class="panel-body">
+				<p class="cs-minor">The pre-processor directives should be <b>indented according to the level of indirection</b>.</p>
+				<pre><code class="language-c">#ifndef PAGE_SIZE
+	#if defined(__i386__) || defined(__x86_64__)
+		#define PAGE_SIZE 4096u
+	#else
+		#error "Unknown architecture"
+	#endif
+#endif</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-warning">
+			<div class="panel-heading">Warning</div>
+			<div class="panel-body">
+				<ul>
+					<li>The L2 rule also applies for pre-processor directives.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G4 - Global variables</div>
+			<div class="panel-body">
+				<p class="cs-minor">Any <b>non-trivial constant</b> should be defined by a constant global variable.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Non-constant global variables should be <b>avoided</b> as much as possible.</li>
+							<li>A variable is called constant if and only if it is correctly marked as such with the keyword <b>const</b>. Watch out, this keyword follows some particular and sometimes surprising rules!</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">const float GOLDEN_RATIO = 1.61803398875;	/* OK */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G5 - Static</div>
+			<div class="panel-body">
+				<p class="cs-minor">Global variables and functions that are not used outside the compilation unit to which they belong should be <b>marked with the <code>static</code> keyword</b>.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Be careful not to confuse the different uses of the <code>static</code> keyword.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- F - Functions -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">F - Functions</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F1 - Coherence of functions</div>
+			<div class="panel-body">
+				<p class="cs-minor">A function should only do <b>one thing</b>, not mix the different levels of abstraction and respect the <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">principle of single responsibility</a> (a function must only be changed for one reason).</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>For example, a call to <code>malloc()</code>, a call to <code>allocate_user()</code> and a call to <code>create_user()</code> have 3 different levels of abstraction.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F2 - Naming functions</div>
+			<div class="panel-body">
+				<p class="cs-major">The name of a function should <b>define the task it executes</b> and should <b>contain a verb</b>.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>For example, the <code>voyals_nb()</code> and <code>dijkstra()</code> functions are incorrectly named. <code>get_voyals_number()</code> and <code>search_shortest_path()</code> are more meaningful and precise.</li>
+						</ul>
+					</div>
+				</div>
+				<p>All identifier names should be <b>in English</b>, according to the <code>snake_case</code> <b>convention</b> (meaning it is composed only of lowercase, numbers, and underscores).</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Abbreviations are tolerated if they significantly reduce the name without losing meaning.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F3 - Number of columns</div>
+			<div class="panel-body">
+				<p class="cs-major">Inside functions, the length of a line should not exceed <b>80 columns</b> (not to be confused with 80 characters!).</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>A tabulation represents <b>1 character</b>, but several columns.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F4 - Number of lines</div>
+			<div class="panel-body">
+				<p class="cs-major">The body of a function should be <b>as short as possible</b>.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>If the body of a function exceeds <b>20 lines</b>, it probably does too many tasks!</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">int main(void)	/* this function is 2-line-long */
+{
+	printf("Hello world!\n");
+	return (0);
+}</code></pre>
+				<pre><code><p>The maximum length of a function is inversely proportional to the complexity and indentation level of that function.
+Case-statement, where you have lots of small things for a lot of different cases, it’s OK to have a longer function.
+
+Linus Torvalds, Linux Kernel Coding Style</p></code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F5 - Arguments</div>
+			<div class="panel-body">
+				<p class="cs-major">The statement of arguments should be in accordance to the <b>ISO/ANSI C syntax</b>. A function taking no parameters should take void as argument in the function declaration.</p>
+				<pre><code class="language-c">phys_addr_t alloc_frame();		/* F5 violation */
+phys_addr_t alloc_frame(void);	/* OK */</code></pre>
+				<p>A function should not need more than <b>4 arguments</b>. Writing variadic functions is allowed, but they should not be used to circumvent the limit of 4 parameters.</p>
+				<p>Structures should be transmitted as parameters using <b>a pointer, not by copy</b>.</p>
+				<pre><code class="language-c">void make_some_coffee(struct my_struct *board, int i)	/* OK */
+{
+	do_something();
+}</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F6 - Comments inside a function</div>
+			<div class="panel-body">
+				<p class="cs-minor">There <b>should be no comment</b> within a function. The function should be readable and self-explanatory, without further need for explanations.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>The length of a function being inversely proportional to its complexity, a complicated function should be short; so a header comment should be enough to explain it.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- L - Layout inside a function scope -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">L - Layout inside a function scope</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L1 - Code line content</div>
+			<div class="panel-body">
+				<p class="cs-major">A line should correspond to <b>only one statement</b>.</p>
+				<p>Typical situations to avoid are:</p>
+				<ul>
+					<li>several assignments on the same line.</li>
+					<li>several semi-colons on the same line, used to separate several code sequences.</li>
+					<li>a condition and an assignment on the same line.</li>
+				</ul>
+				<pre><code class="language-c">a = b = c = 0;											/* L1 violation */
+a++; b++;												/* L1 violation */
+if ((ptr = malloc(sizeof(struct my_struct))) != NULL)	/* L1 violation */
+if (cond) return (ptr);									/* L1 violation */
+a = do_something(), 5;									/* L1 violation */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L2 - Indentation</div>
+			<div class="panel-body">
+				<p class="cs-minor">Tabulations should be 8-space-wide and used for indentation. No space be used for indentation.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L3 - Spaces</div>
+			<div class="panel-body">
+				<p class="cs-minor">Always place a <b>space after a comma or a keyword</b> (with or without argument).</p>
+				<p>However, there will be no space between the name of a function and the opening parenthesis or after a unary operator.</p>
+				<p>All binary and ternary operators should be separated from the arguments by a space on both sides.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li><code>return</code> is a keyword but <code>sizeof</code> is a unary operator!</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">return(1);					/* L3 violation */
+return (1);					/* OK */
+sum = term1 + 2 * term2;	/* OK */
+s = sizeof(struct file);	/* OK */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L4 - Curly brackets</div>
+			<div class="panel-body">
+				<p class="cs-minor">Opening curly brackets should be <b>at the end of their line</b>, except for functions where they must be placed alone on their line.</p>
+				<p>Closing curly brackets should always be <b>alone on their line</b>, except in the case of an <code>else</code> statement.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>In the case of a single-line scope, curly brackets are optional.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">if (cond) {return (ptr);}	/* L1 & L4 violation */
+
+while (cond) {				/* OK */
+	do_something();
+}
+
+if (cond)					/* L4 violation */
+{
+	...
+} else {					/* OK */
+	...
+}
+
+if (cond)					/* OK */
+	return (ptr);
+
+int print_env(void)			/* OK */
+{
+	...
+}
+
+int print_env(void) {		/* L4 violation */
+	...
+}</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L5 - Variables declaration</div>
+			<div class="panel-body">
+				<p class="cs-minor">Variables should be declared <b>at the beginning of the scope</b> of the function. The for-loop counters may optionally be declared within the loop.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Nothing prevents you from declaring and assigning a variable on the same line.</li>
+						</ul>
+					</div>
+				</div>
+				<p><b>Only one variable</b> should be declared per line.</p>
+				<pre><code class="language-c">long calculate_pgcd(long a, long b)
+{
+	long biggest, smallest;				/* L5 violation */
+
+	biggest = MAX(a, b);
+	smallest = MIN(a, b);
+	long rest;							/* L5 violation */
+	while (smallest > 0) {
+		rest = biggest % smallest;
+		biggest = smallest;
+		smallest = rest;
+	}
+	return (a);
+}
+
+int main(void)
+{
+	int forty_two = 42;					/* OK */
+	int max = 12;						/* OK */
+
+	for (int i = 0 ; i < max ; i++)		/* OK */
+		calculate_pgcd(forty_two, max);
+	return (0);
+}</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L6 - Line jumps</div>
+			<div class="panel-body">
+				<p class="cs-minor">A line break should <b>separate the variable declarations from the remainder</b> of the function. No other line breaks should be present in the scope of a function.</p>
+				<pre><code class="language-c">int sys_open(char const *path)
+{
+	int fd = thread_reserve_fd();
+	struct filehandler *fhandler = NULL;
+											/* OK */
+	if (fd < 0)
+		return (-1);
+	if (fs_open(path, &fhandler)) {
+		thread_free_fd(fd);
+		return (-1);
+	}
+											/* L6 violation */
+	thread_set_fd_handler(fd, fhandler);
+	return (fd);
+}</code></pre>
+			</div>
+		</div>
+
+		<!-- V - Variables and types -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">V - Variables and types</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">V1 - Naming identifiers</div>
+			<div class="panel-body">
+				<p class="cs-major">All identifier names should be <b>in English</b>, according to the <code>snake_case</code> <b>convention</b> (meaning it is composed only of lowercase, numbers, and underscores).</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Abbreviations are tolerated as long as they significantly reduce the name length without losing meaning.</li>
+						</ul>
+					</div>
+				</div>
+				<p>The type names defined with <code>typedef</code> should <b>end with</b> <code>_t</code>. The names of <b>macros and global constants</b> and the content of <b>enums</b> should be written in <code>UPPER_CASE</code>.</p>
+				<pre><code class="language-c">#define IS_PAGE_ALIGNED(x) (!((x) & (PAGE_SIZE - 1)))		/* OK */
+enum arch {													/* OK */
+	I386 = 0,
+	X86_64,
+	ARM,
+	ARM64,
+	SPARC,
+	POWERPC,
+};
+
+const float PI = 3.14159;									/* OK */
+typedef int age;											/* V1 violation */
+typedef struct int_couple pixel_t;							/* OK */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">V2 - Structures</div>
+			<div class="panel-body">
+				<p class="cs-major">Variables could be grouped together into a structure if and only if they form <b>a coherent entity</b>. Structures must be kept <b>as small as possible</b>.</p>
+				<pre><code class="language-c">struct person {				/* OK */
+	char *name;
+	unsigned int age;
+	float salary;
+};
+
+struct trashy {				/* V2 violation */
+	struct person player;
+	unsigned int width;
+	unsigned int length;
+	unsigned int score;
+	int i;
+};</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">V3 - Pointers</div>
+			<div class="panel-body">
+				<p class="cs-minor">The pointer symbol (<code>*</code>) should be <b>attached to the associated variable</b>, with no spaces.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>This rule applies only in the pointer context.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">int* a;							/* V3 violation */
+int *a;							/* OK */
+int a = 3 * b;					/* OK */
+int strlen(char const *str);	/* OK*/</code></pre>
+			</div>
+		</div>
+
+		<!-- C - Control structure -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">C - Control structure</div>
+			<div class="panel-body">
+				<p>Unless otherwise specified, all control structures are <b>allowed</b>.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">C1 - Conditional branching</div>
+			<div class="panel-body">
+				<p class="cs-minor">An <code>if</code> block should not <b>contain more than 3 branchings</b>, excluding error handling.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Instead, use an array of pointers to function or a <code>switch</code>. Take care to choose the most suitable one (you may be asked for a justification).</li>
+						</ul>
+					</div>
+				</div>
+				<p><b>Nested conditonal branchings</b> with a depth of 3 or more should be avoided.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>If you need multiple levels of branching, you probably need to refactor your function into sub-functions.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">if (...)					/* OK */
+	do_something();
+else if (...)
+	do_something_else();
+else
+	do_something_more();
+
+if (...)					/* C1 violation */
+	do_something();
+else if (...)
+	do_something_else();
+else if (...)
+	do_something_more();
+else
+	do_one_last_thing();
+
+while (...)					/* OK */
+	if (...)
+
+while (...)					/* C1 violation */
+	for (...)
+		if (...)</code></pre>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>If ever you need to disrepect this rule, you could probably compute the <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic complexity</a> of your function to justify it...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">C2 - Ternary</div>
+			<div class="panel-body">
+				<p class="cs-info">Ternaries are <b>allowed as far as they are kept simple and readable</b>, and they do not obfuscate code.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>You should never use <b>nested or chained ternaries</b>.</li>
+							<li>Ternaries should <b>not be used to control program flow</b>.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">parity_t year_parity = (year % 2 == 0) ? EVEN : ODD;		/* OK */
+return (a > 0 ? a : 0);										/* OK */
+int a = b > 10 ? c < 20 ? 50 : 80 : e == 2 ? 4 : 8;			/* C2 violation */
+already_checked ? go_there() : check();						/* C2 violation */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">C3 - Goto</div>
+			<div class="panel-body">
+				<p class="cs-minor">Your code <b>should not contain the <code>goto</code> keyword</b>, especially because it can very quickly participate in the creation of infamous spaghetti code, which is completely illegible.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>In <b>rare cases</b>, its use makes it possible to bring readability and/or optimization to your program (error management for example).</li>
+							<li>As always, a justification will be systematically requested.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- A - Advanced -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">A - Advanced</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">A1 - Constant pointers</div>
+			<div class="panel-body">
+				<p class="cs-info">When creating a pointer (when switching from a pointer to a parameter or internal variable of a function), if the pointed data is not modified by the function, it should be marked as <b>constant</b> (<code>const</code>).</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">A2 - Typing</div>
+			<div class="panel-body">
+				<p class="cs-info">Prefer the <b>most accurate types possible</b> according to the use of the data.</p>
+				<pre><code class="language-c">int counter;									/* A2 violation */
+unsigned int counter;							/* OK */
+unsigned int get_obj_size(void const *object)	/* A2 violation */
+size_t get_obj_size(void const *object)			/* OK */</code></pre>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li><code>ptrdiff_t</code>, <code>uint8_t</code>, <code>int32_t</code>, ...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- H - Header files -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">H - Header files</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">H1 - Content</div>
+			<div class="panel-body">
+				<p class="cs-major">Header files should contain only:</p>
+				<ul>
+					<li><b>Prototypes of functions</b>.</li>
+					<li><b>Type declarations</b>.</li>
+					<li><b>Global variable declarations</b>.</li>
+					<li><b>Macros</b>.</li>
+					<li><b>Static inline</b> functions.</li>
+				</ul>
+				<p>All these elements should be found <b>only</b> in header files.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Header files can include other headers (if and only if it is necessary).</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">H2 - Include guard</div>
+			<div class="panel-body">
+				<p class="cs-minor">Headers should be protected from <b>double inclusion</b>. The method and the conventions used are left free.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">H3 - Macros</div>
+			<div class="panel-body">
+				<p class="cs-minor">Macros should <b>not be used for constants</b>. Macros should match <b>only one statement</b>.</p>
+				<pre><code class="language-c">#define PI					3.14159265358979323846			/* H3 violation */
+const float PI = 3.14159265358979323846;					/* OK */
+#define LOOP_COUNTER		0								/* H3 violation */
+#define DELTA(a, b, c)		((b) * (b) - 4 * (a) * (c))		/* OK */
+#define PRINT_NEXT(num)		{num++; printf("%d", num);}		/* H3 violation */</code></pre>
+			</div>
+		</div>
+	</body>
+</html>
