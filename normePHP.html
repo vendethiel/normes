@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Norme PHP ETNA</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/prism.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
+		<script type="text/javascript" src="https://dl.etna-alternance.net/sujets/prism.js"></script>
+	</head>
+	<body>
+		<div class="panel panel-module">
+			<div class="panel-heading">ETNA Documentation</div>
+		</div>
+		<div class="panel panel-project">
+			<div class="panel-heading">Norme PHP ETNA</div>
+			<div class="panel-body">
+				<p>Cette norme a pour but d'uniformiser l'&eacute;criture des programmes au sein de l'ETNA.</p>
+				<p>Elle concerne :</p>
+				<ul>
+					<li>La nomination des objets.</li>
+					<li>La pr&eacute;sentation globale (paragraphes).</li>
+					<li>La pr&eacute;sentation locale (lignes).</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">1) La nomination des objets</div>
+			<div class="panel-body">
+				<p>Les objets (variables, fonctions, classes) doivent avoir des noms les plus explicites ou mn&eacute;moniques et ce en <b>ANGLAIS</b> exclusivement.</p>
+				<p>Les abr&eacute;viations sont <b>TOLER&Eacute;ES</b> dans la mesure o&ugrave; elles permettent de r&eacute;duire significativement la taille du nom sans en perdre le sens. De mani&egrave;re g&eacute;n&eacute;rale, une variable, fonction, classe... est &eacute;crite en miniscules.</p>
+				<ul>
+					<li>Si son nom d'objet est compos&eacute;, on s&eacute;pare les diff&eacute;rents mots qui le compose en mettant un underscore (<code class="language-php">_</code>).</li>
+					<p>Exemple : <code class="language-php">$a_simple_var</code>, <code class="language-php">function my_func()</code>.</p>
+					<li>Les noms de variables et de fonctions sont constitu&eacute;s uniquement de mininuscules, de chiffres et d'underscores.</li>
+					<p>Exemple :</p>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							$aSimpleVar // Incorrect
+							$a_simple_var // Correct
+							$a_Simple_Var // Incorrect
+							$ASimpleVar // Incorrect
+							?&gt;
+						</code>
+					</pre>
+					<li>Afin de distinguer les fonctions natives du language de celles que vous allez coder, toutes les fonctions que vous &eacute;crirez devront commencer par <code class="language-php">func_</code>.</li>
+					<p>Exemple :</p>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							function func_foo() // Correct
+							function func_another_test() // Correct
+							function foo() // Incorrect
+							function func_4me() // Correct
+							?&gt;
+						</code>
+					</pre>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">2) Pr&eacute;sentation globale</div>
+			<div class="panel-body">
+				<ul>
+					<li>Les fichiers source (<code>.php</code>) doivent toujours commencer par le header standard de l'&eacute;cole. Ce header est cr&eacute;&eacute; sous Emacs &agrave; l'aide de la commande <code>C-c C-h</code>.</li>
+					<li>l'indentation se fait au moyen de la touche Tab sous Emacs, et un Alt-i pour la d&eacute;claration des fonctions.</li>
+				</ul>
+				<ul>
+					<li>On passe toujours &agrave; la ligne apr&egrave;s un <code class="language-php">;</code> et une accolade ouvrante ou fermante (<code class="language-php">{</code>, <code class="language-php">}</code>).</li>
+					<li>L'accolade ouvrante se trouve sur la ligne suivant l'instruction qui provoque l'ouverture du bloc. Elle est align&eacute;e sur cette m&ecirc;me instruction.</li>
+					<li>On indente a partir de la ligne qui suit l'accolade.</li>
+					<p>Exemple :</p>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							function	func_my_test($a_simple_var)
+							{
+								echo &quot;Hello World!&quot;;
+							}
+							?&gt;
+						</code>
+					</pre>
+					<li>On met une variable par ligne et on ne saute jamais de ligne au sein d'une fonction.</li>
+					<li>Une ligne ne doit pas exc&eacute;der 80 caract&egrave;res.</li>
+					<li>On fera attention &agrave; faire des fonctions courtes et claires, de maximum 25 lignes.</li>
+					<li>Pas plus de 5 fonctions par fichier.</li>
+					<li>On ne fait jamais de commentaires dans une fonction, mais &eacute;ventuellement au d&eacute;but de la fonction, et ce bien s&ucirc;r en <b>ANGLAIS</b>.</li>
+					<p>Exemple :</p>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							/*
+							** A simple Hello World...
+							*/
+							function	func_hello_world($your_name)
+							{
+								$str = &quot;Hello $your_name, how are you?&quot;;
+								echo $str;
+								return (true);
+							}
+							?&gt;
+						</code>
+					</pre>
+				</ul>
+				<ul>
+					<li>La d&eacute;claration de param&egrave;tres se fera de la facon suivante :</li>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							function	func_test($var1, $var2, $var3)
+							{
+
+							}
+							?&gt;
+						</code>
+					</pre>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">3) Pr&eacute;sentation locale</div>
+			<div class="panel-body">
+				<ul>
+					<li>Toujours un espace derri&egrave;re la <code class="language-php">,</code> et derri&egrave;re le <code class="language-php">;</code> sauf en fin de ligne.</li>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							for ($i = 0; $i &lt; 10; $i++)
+							{
+								func_print_test(0, $i);
+							}
+							?&gt;
+						</code>
+					</pre>
+					<li>Pas d'espace entre le nom d'une fonction et la <code class="language-php">(</code>, par contre toujours un espace entre un mot clef PHP (avec argument) et la <code class="language-php">(</code>.</li>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							function	func_test($var1, $var2, $var3)
+							{
+								for ($i = $var1; $i &lt; $var2; $i += $var3)
+								{
+									if ($i == 0)
+									{
+										print_r($i);
+									}
+									else
+									{
+										echo &quot;$i\r\n&quot;;
+									}
+								}
+								return ($var3);
+							}
+							?&gt;
+						</code>
+					</pre>
+					<li>Ceci concerne <code class="language-php">for</code>, <code class="language-php">while</code>, etc... et aussi <code class="language-php">return</code>.</li>
+					<li>Lorsque <code class="language-php">return</code> prend un argument, ce dernier doit &ecirc;tre entre parenth&egrave;ses.</li>
+					<li>On alignera les d&eacute;clarations avec des tabulations (sous Emacs <code>M-i</code>).</li>
+					<li>Affectations : Il doit y avoir un espace entre la variable de gauche et le signe d'affectation, de m&ecirc;me pour la variable de droite.</li>
+					<li>Op&eacute;rateurs unaires. Pas d'espaces.</li>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							$test++;
+							?&gt;
+						</code>
+					</pre>
+					<li>Op&eacute;rateurs bi/ternaires. Tous les op&eacute;rateurs binaires et ternaires sont s&eacute;par&eacute;s des arguments par un espace de part et d'autre.</li>
+					<pre>
+						<code class="language-php">
+							&lt;?php
+							if ($a % 10)
+								return ($cp ? $cp : "DEFAULT STRING");
+							?&gt;
+						</code>
+					</pre>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
