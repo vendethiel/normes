@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>C Coding Style</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/prism.css">
+		<link rel="stylesheet" href="https://dl.etna-alternance.net/sujets/sujet-etna-new.css">
+		<script type="text/javascript" src="https://dl.etna-alternance.net/sujets/prism.js"></script>
+	</head>
+	<body>
+		<div class="panel panel-module">
+			<div class="panel-heading">ETNA Documentation</div>
+		</div>
+		<div class="panel panel-project">
+			<div class="panel-heading">C++ Coding Style</div>
+			<div class="panel-body">
+				<p>The <i>Coding Style ETNA</i> is a set of rules, guidelines and programming conventions that has been created within the school, and that you have to respect.</p>
+				<p>It concerns:</p>
+				<ul>
+					<li>The organization of the delivery folder.</li>
+					<li>The denomination of the identifiers.</li>
+					<li>The overall presentation (paragraphs).</li>
+					<li>The local presentation (lines).</li>
+					<li>Source files and headers.</li>
+					<li>Makefiles.</li>
+				</ul>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>The <i>Coding Style</i> is a purely syntactic convention, so it can not be used as an excuse if your program does not work!</li>
+						</ul>
+					</div>
+				</div>
+				<p>It is compulsory on all programs written in C++ as part of ETNA projects, regardless of the year or unit. It applies to all source files (<code>.cpp</code>) and headers (<code>.hh</code> or <code>.hpp</code>), as well as <code>Makefile</code>s.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Although the <i>Coding Style</i> is not required in all projects, this is not a reason for not always sequencing and structuring your code!</li>
+							<li>Most of the rules in this <i>Coding Style</i> apply to all languages, so it can be useful when you’re doing projects in different languages.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>It’s easier and quicker to follow the guide style from the beginning of a project rather than to adapt an existing code at the end.</li>
+						</ul>
+					</div>
+				</div>
+				<p>The existence of this <i>Coding Style</i> is justified by the need to standardize the writing of programs within the school, in order to facilitate group work.</p>
+				<p>It is also an excellent way to encourage structuring and clarity of the code and thus facilitate:</p>
+				<ul>
+					<li>Its reading.</li>
+					<li>Its debugging.</li>
+					<li>Its maintenance.</li>
+					<li>Its internal logic.</li>
+					<li>Its reuse.</li>
+					<li>Writing tests.</li>
+					<li>Adding new features.</li>
+					<li>...</li>
+				</ul>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>When you are facing a choice and you do not know what decision to make, always ask yourself which one helps to make your code clearer, ergonomic and flexible.</li>
+						</ul>
+					</div>
+				</div>
+				<p>However, if you provide a <b>complete, relevant, accurate justification with a long-term view</b> (cleanliness, legibility, code flexibility, optimization, etc.), you can infringe some of the <i>Coding Style</i> points.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>The relevance of this justification is left to the discretion of the proofreader, so it is preferable to present a strong argumentation or to abstain.</li>
+						</ul>
+					</div>
+				</div>
+				<p>In case of uncertainty or ambiguity in the principles specified in this document refer to your local education manager.</p>
+				<p>There are 3 levels of severity: <b>major</b> <span class="cs-major"></span>, <b>minor</b> <span class="cs-minor"></span> and <b>info</b> <span class="cs-info"></span>.</p>
+				<p>There are many and many ways to produce unclean code. Even though one cannot mention all of them in this document, they have to be respected. We call them <b>implicite rules</b> when not explicitly defined in this document.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Implicit rules are considered as infos <span class="cs-info"></span>.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>This document is inspired by the <a href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html">Linux Kernel Coding Style</a>, and is freely adapted from Robert C. Martin’s excellent book <i>Clean Code</i>.</li>
+							<li>It is strictly a fork of the C Coding Style Etna.</li>
+							<li>Some tools (such as <a href="http://editorconfig.org/">Editor Config</a>) might simplify the task.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- O - Files organization -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">O - Files organization</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O1 - Contents of the delivery folder</div>
+			<div class="panel-body">
+				<p class="cs-major">Your delivery folder should contain only <b>files required for compilation</b>.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>This means no compiled (<code>.o</code>, <code>.gch</code>, <code>.a</code>, <code>.so</code>, ...), temporary or unnecessary files (<code>*~</code>, <code>*#</code>, <code>*.d</code>, <code>toto</code>, ...).</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O2 - File extension</div>
+			<div class="panel-body">
+				<p class="cs-minor">Sources in a C++ program should only have extensions <code>.cpp</code> <b>or</b> <code>.hh</code> or <code>.hpp</code>.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O3 - File coherence</div>
+			<div class="panel-body">
+				<p class="cs-major">A source file should match <b>a logical entity</b>, and group all the functions associated with that entity: usually a class or a namespace.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Beware of "God Objects" classes: these classes tend to do everything and anything. If this is happening in your project, you should start chopping off methods to other classes or namespaces.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">O4 - Naming files and folders</div>
+			<div class="panel-body">
+				<p class="cs-major">The name of the file should define the logical entity it represents, and thus be <b>clear, precise, explicit and unambiguous</b>.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>For example, the <code>string.cpp</code> or <code>algo.cpp</code> files are probably incorrectly named. Names like <code>string_converters.cpp</code> or <code>pathfinding.cpp</code> would be more appropriate.</li>
+						</ul>
+					</div>
+				</div>
+				<p>All identifier names should be <b>in English</b>, according to the <b>following conventions</b>:</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>A class name should use PascalCase.</li>
+							<li>A method name should use camelCase.</li>
+							<li>A variable name should use snake_case.</li>
+							<li>Abbreviations are tolerated to the extent that they can significantly reduce the size of the name without losing the meaning.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- G - Global scope -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">G - Global scope</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G1 - Separation of functions</div>
+			<div class="panel-body">
+				<p class="cs-minor">Inside a source file, <b>one and only one empty line</b> should separate the implementations of functions. You are allowed lines before/after opening a class/namespace declaration.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G2 - Indentation of pre-processor directives</div>
+			<div class="panel-body">
+				<p class="cs-minor">The pre-processor directives should be <b>indented according to the level of indirection</b>.</p>
+				<pre><code class="language-c">#ifndef PAGE_SIZE
+	#if defined(__i386__) || defined(__x86_64__)
+		#define PAGE_SIZE 4096u
+	#else
+		#error "Unknown architecture"
+	#endif
+#endif</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-warning">
+			<div class="panel-heading">Warning</div>
+			<div class="panel-body">
+				<ul>
+					<li>The L2 rule also applies for pre-processor directives.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G3 - Global variables</div>
+			<div class="panel-body">
+				<p class="cs-minor">Any <b>non-trivial constant</b> should be defined as a <b>constant variable in a namespace</b>.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>Non-constant global variables are <b>strictly forbidden</b>.</li>
+							<li>Constants are allowed in anonymous namespaces, but only <b>in <code>.cpp</code> files</b>.</li> 
+							<li>A variable is called constant if and only if it is correctly marked as such with the keyword <b>const</b>. Watch out, this keyword follows some particular and sometimes surprising rules!</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">const float GOLDEN_RATIO = 1.61803398875;	/* OK */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">G4 - Anonymous namespaces</div>
+			<div class="panel-body">
+				<p class="cs-minor">Global variables and functions that are not used outside the compilation unit to which they belong should be <b>nested in an anonymous <code>namespace { ... }</code> declaration</b>.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Info</div>
+					<div class="panel-body">
+						<ul>
+							<li>If you need more than this, you are encouraged to use a <b>details</b> namespace.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- F - Functions -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">F - Functions</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F1 - Coherence of functions</div>
+			<div class="panel-body">
+				<p class="cs-minor">A function should only do <b>one thing</b>, not mix the different levels of abstraction and respect the <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">principle of single responsibility</a> (a function must only be changed for one reason).</p>
+				<p class="cs-minor">A class should have a single responsibility as well. The User class shouldn't know about generating database statements.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F2 - Number of columns</div>
+			<div class="panel-body">
+				<p class="cs-major">Inside functions, the length of a line should not exceed <b>120 columns</b> (not to be confused with 120 characters!).</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>A tabulation represents <b>1 character</b>, but several columns.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F3 - Number of lines</div>
+			<div class="panel-body">
+				<p class="cs-major">The body of a function should be <b>as short as possible</b>.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>If the body of a function exceeds <b>25 lines</b>, it probably does too many tasks!</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">int main()	/* this function is 2-line-long */
+{
+	printf("Hello world!\n");
+	return 0;
+}</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F4 - Auto return type and trailing return types</div>
+			<div class="panel-body">
+				<p class="cs-minor">You are allowed to use <b>auto</b> for your return type, as well as <b>trailing return types</b>; if they help make the code clearer (usually for templates), or if it's required for template SFINAE.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>In C++, it is dangerous to add parentheses to all your return statements, as it can change the behavior of your functions in some cases.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">auto f() /* prevents having to spell the iterator type */
+{
+	return xs.begin();
+}</code></pre>
+				<pre><code class="language-c">template&lt;typename T&gt;
+auto f(T&& x) -> std::enable_if<...> /* helps with advanced cases of SFINAE */
+{
+	return compute(x);
+}</code></pre>
+			</div>
+		</div>
+
+		<div class="panel panel-exercice">
+			<div class="panel-heading">F5 - Function return statements</div>
+			<div class="panel-body">
+				<p class="cs-minor">There <b>should be no parentheses</b> in a return statement.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>In C++, it is dangerous to add parentheses to all your return statements, as it can change the behavior of your functions in some cases.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">decltype(auto) f()
+{
+	int a;
+	return (a); /* returns a dangling reference */
+}</code></pre>
+			</div>
+		</div>
+
+		<!-- L - Layout inside a function scope -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">L - Layout inside a function scope</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L1 - Code line content</div>
+			<div class="panel-body">
+				<p class="cs-major">A line should correspond to <b>only one statement</b>.</p>
+				<p>Typical situations to avoid are:</p>
+				<ul>
+					<li>several assignments on the same line (tends to be undefined behavior).</li>
+					<li>several semi-colons on the same line, used to separate several code sequences.</li>
+					<li>a condition and an assignment on the same line.</li>
+				</ul>
+				<pre><code class="language-c">a = b = c = 0;											/* L1 violation */
+a++; b++;												/* L1 violation */
+if ((ptr = new(std::nothrow) A)) != NULL)	            /* L1 violation */
+if (cond) return ptr;									/* L1 violation */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L2 - Indentation</div>
+			<div class="panel-body">
+				<p class="cs-minor">Tabulations should be 8-space-wide and used for indentation. No space be used for indentation.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L3 - Spaces</div>
+			<div class="panel-body">
+				<p class="cs-minor">Always place a <b>space after a comma or a keyword</b> (with or without argument).</p>
+				<p>However, there will be no space between the name of a function and the opening parenthesis or after a unary operator.</p>
+				<p>All binary and ternary operators should be separated from the arguments by a space on both sides.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li><code>return</code> is a keyword but <code>sizeof</code> is a unary operator!</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">return 1;  					/* L3 violation */
+return 1;  					/* OK */
+sum = term1 + 2 * term2;	/* OK */
+s = sizeof(struct file);	/* OK */
+s = sizeof *s;              /* OK */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L4 - Curly brackets</div>
+			<div class="panel-body">
+				<p class="cs-minor">Opening curly brackets should be <b>at the end of their line</b>, except for functions where they must be placed alone on their line.</p>
+				<p>Closing curly brackets should always be <b>alone on their line</b>, except in the case of an <code>else</code> statement.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>In the case of a single-line scope, curly brackets are optional.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">if (cond) {return (ptr);}	/* L1 & L4 violation */
+
+while (cond) {				/* OK */
+	do_something();
+}
+
+if (cond)					/* L4 violation */
+{
+	...
+} else {					/* OK */
+	...
+}
+
+if (cond)					/* OK */
+	return (ptr);
+
+int print_env(void)			/* OK */
+{
+	...
+}
+
+int print_env(void) {		/* L4 violation */
+	...
+}</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">L5 - Variables declaration</div>
+			<div class="panel-body">
+				<p class="cs-minor">Variables can be declared throughout the function, as well as in <b>if</b> and <b>for</b> statements.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Nothing prevents you from declaring and assigning a variable on the same line.</li>
+							<li><b>auto</b> is allowed, even recommended for more complex types.</li>
+						</ul>
+					</div>
+				</div>
+				<p><b>Only one variable</b> should be declared per line.</p>
+				<pre><code class="language-c">long calculate_pgcd(long a, long b)
+{
+	auto biggest = std::max(a, b);
+	auto smallest = std::min(a, b);
+	long rest = 0;
+	while (smallest > 0) {
+		rest = biggest % smallest;
+		biggest = smallest;
+		smallest = rest;
+	}
+	return a;
+}
+
+int main()
+{
+	int forty_two = 42;					/* OK */
+	int max = 12;						/* OK */
+
+	for (int i = 0 ; i &lt; max ; i++)		/* OK */
+		calculate_pgcd(forty_two, max);
+	return 0;
+}</code></pre>
+			</div>
+		</div>
+
+		<!-- V - Variables and types -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">V - Variables and types</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">V1 - Classes</div>
+			<div class="panel-body">
+				<p class="cs-major">Variables and methods could be grouped together into a function if and only if they form <b>a coherent entity</b>. Classes must be kept <b>as small as possible</b>.</p>
+				<pre><code class="language-c">class Person {				/* OK */
+	std::string name;
+	unsigned int age;
+	float salary;
+};</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">V2 - Pointers</div>
+			<div class="panel-body">
+				<p class="cs-minor">The pointer symbol (<code>*</code>) should be <b>attached to the associated variable</b>, with no spaces.</p>
+				<p class="cs-minor">Raw pointers (<code>int*</code>) should usually <b>only be used for non-owning pointers</b>.</p>
+				<pre><code class="language-c">auto intptr = std::make_unique&lt;int&gt;(4); /* OK */
+int *a = intptr.get();                  /* Non-owning, OK */
+int *a = new int;                       /* Usually a V2 violation */</code></pre>
+			</div>
+		</div>
+
+		<!-- C - Control structure -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">C - Control structure</div>
+			<div class="panel-body">
+				<p>Unless otherwise specified, all control structures are <b>allowed</b>.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">C1 - Conditional branching</div>
+			<div class="panel-body">
+				<p class="cs-minor">An <code>if</code> block should not <b>contain more than 3 else parts</b>, excluding error handling.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Instead, use an array of pointers to function, a <code>std::unordered_map</code> or a <code>switch</code>. Take care to choose the most suitable one (you may be asked for a justification).</li>
+						</ul>
+					</div>
+				</div>
+				<p><b>Nested conditonal branchings</b> with a depth of 3 or more should be avoided.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>If you need multiple levels of branching, you probably need to refactor your function into sub-functions.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">if (...)					/* OK */
+	do_something();
+else if (...)
+	do_something_else();
+else
+	do_something_more();
+
+if (...)					/* C1 violation */
+	do_something();
+else if (...)
+	do_something_else();
+else if (...)
+	do_something_more();
+else
+	do_one_last_thing();
+
+while (...)					/* OK */
+	if (...)
+
+while (...)					/* C1 violation */
+	for (...)
+		if (...)</code></pre>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>If ever you need to disrepect this rule, you could probably compute the <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic complexity</a> of your function to justify it...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">C2 - Ternary</div>
+			<div class="panel-body">
+				<p class="cs-info">Ternaries are <b>allowed as far as they are kept simple and readable</b>, and they do not obfuscate code.</p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">Warning</div>
+					<div class="panel-body">
+						<ul>
+							<li>You should never use <b>nested or chained ternaries</b>.</li>
+							<li>Ternaries should <b>not be used to control program flow</b>.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">parity_t year_parity = (year % 2 == 0) ? EVEN : ODD;		/* OK */
+return (a > 0 ? a : 0);										/* OK */
+int a = b > 10 ? c < 20 ? 50 : 80 : e == 2 ? 4 : 8;			/* C2 violation */
+already_checked ? go_there() : check();						/* C2 violation */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">C3 - Goto</div>
+			<div class="panel-body">
+				<p class="cs-minor">Your code <b>should not contain the <code>goto</code> keyword</b>, especially because it can very quickly participate in the creation of infamous spaghetti code, which is completely illegible.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>The rare cases in C where <code>goto</code> makes sense should be replaced with RAII in C++.</li>
+						</ul>
+					</div>
+				</div>
+				<pre><code class="language-c">parity_t year_parity = (year % 2 == 0) ? EVEN : ODD;		/* OK */
+return (a > 0 ? a : 0);										/* OK */
+int a = b > 10 ? c < 20 ? 50 : 80 : e == 2 ? 4 : 8;			/* C2 violation */
+already_checked ? go_there() : check();						/* C2 violation */</code></pre>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">C4 - For-range</div>
+			<div class="panel-body">
+				<p class="cs-minor">You are allowed and even encouraged to use for-ranges.</p>
+				<pre><code class="language-c">auto xs = std::vector(10);
+std::generate(xs.begin(), xs.end(), f);
+for (auto&amp; x : xs) {
+	std::cout &lt;&lt; x.name &lt;&lt; std::endl;
+}</code></pre>
+			</div>
+		</div>
+
+		<!-- A - Advanced -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">A - Advanced</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">A1 - Constant pointers</div>
+			<div class="panel-body">
+				<p class="cs-info">When creating a pointer (when switching from a pointer to a parameter or internal variable of a function), if the pointed data is not modified by the function, it should be marked as <b>constant</b> (<code>const</code>).</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">A2 - Typing</div>
+			<div class="panel-body">
+				<p class="cs-info">Prefer the <b>most accurate types possible</b> according to the use of the data.</p>
+				<p class="cs-info">That also means preferring the specific subclass rather than the generic superclass when applicable. It usually even helps the compiler de-virtualize method calls.</p>
+				<pre><code class="language-c">int counter;									/* A2 violation */
+unsigned int counter;							/* OK */
+unsigned int get_obj_size(void const *object)	/* A2 violation */
+size_t get_obj_size(void const *object)			/* OK */</code></pre>
+			</div>
+		</div>
+
+		<!-- H - Header files -->
+		<div class="panel panel-objective">
+			<div class="panel-heading">H - Header files</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">H1 - Content</div>
+			<div class="panel-body">
+				<p class="cs-major">Header files should contain only:</p>
+				<ul>
+					<li><b>Prototypes of functions</b>.</li>
+					<li><b>Type &amp; classes declarations</b>.</li>
+					<li><b>Global variable declarations</b>.</li>
+					<li><b>Macros</b>.</li>
+				</ul>
+				<p>All these elements should be found <b>only</b> in header files.</p>
+				<div class="panel panel-info">
+					<div class="panel-heading">Informations</div>
+					<div class="panel-body">
+						<ul>
+							<li>Header files can include other headers (if and only if it is necessary).</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">H2 - Include guard</div>
+			<div class="panel-body">
+				<p class="cs-minor">Headers should be protected from <b>double inclusion</b>. The method and the conventions used are left free.</p>
+			</div>
+		</div>
+		<div class="panel panel-exercice">
+			<div class="panel-heading">H3 - Macros</div>
+			<div class="panel-body">
+				<p class="cs-minor">Macros should <b>not be used for constants</b>. Macros should match <b>only one statement</b>.</p>
+				<pre><code class="language-c">#define PI					3.14159265358979323846			/* H3 violation */
+const float PI = 3.14159265358979323846;					/* OK */
+#define LOOP_COUNTER		0								/* H3 violation */
+#define DELTA(a, b, c)		((b) * (b) - 4 * (a) * (c))		/* OK */
+#define PRINT_NEXT(num)		{num++; printf("%d", num);}		/* H3 violation */</code></pre>
+			</div>
+		</div>
+	</body>
+</html>
