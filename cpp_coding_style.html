@@ -360,7 +360,7 @@ if (cond) return ptr;									/* L1 violation */</code></pre>
 						</ul>
 					</div>
 				</div>
-				<pre><code class="language-c">return 1;  					/* L3 violation */
+				<pre><code class="language-c">return(1); 					/* L3 violation */
 return 1;  					/* OK */
 sum = term1 + 2 * term2;	/* OK */
 s = sizeof(struct file);	/* OK */
